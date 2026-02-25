@@ -5,8 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Consultation Booking - HoxtonWealth</title>
     <style>
+      @font-face {
+        font-family: 'FT Calhern';
+        src: url('/fonts/FTCalhern-Medium.woff2') format('woff2');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'FT Calhern';
+        src: url('/fonts/FTCalhern-Semibold.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Sentient';
+        src: url('/fonts/Sentient-Regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Sentient';
+        src: url('/fonts/Sentient-Medium.woff2') format('woff2');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { background: #f5f7f8; min-height: 100vh; }
+      body { background: #f5f7f8; min-height: 100vh; font-family: 'Sentient', Georgia, serif; }
       /* FIX #4: Focus indicators for keyboard accessibility */
       input:focus-visible,
       select:focus-visible,
@@ -14,6 +42,15 @@
       button:focus-visible {
         outline: 2px solid #0B5D5F;
         outline-offset: 2px;
+      }
+      /* Respect prefers-reduced-motion */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
       }
     </style>
   </head>

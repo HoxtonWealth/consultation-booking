@@ -176,11 +176,10 @@ function StepBar({ step }) {
 function Header({ title, subtitle, mobile }) {
   return (
     <div style={{ marginBottom: 20 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect width="28" height="28" rx="4" fill="#0B5D5F"/><path d="M7 9h4v10H7V9zm5 4h4v6h-4v-6zm5-2h4v8h-4v-8z" fill="white"/></svg>
-        <span style={{ fontSize: 17, fontWeight: 700, color: "#0B5D5F" }}>HoxtonWealth</span>
+      <div style={{ display: "flex", alignItems: "center", marginBottom: 14 }}>
+        <svg width={mobile ? 155 : 200} height="26" viewBox="0 0 227 26" fill="none" aria-label="HoxtonWealth" role="img"><path d="M45.186 0H37.77a2.7 2.7 0 0 0-2.57 1.871l-2.347 7.264c-.718 2.223-2.112 3.729-5.529 3.729h-4.819l3.471-10.745A1.62 1.62 0 0 0 24.434 0h-7.416a2.7 2.7 0 0 0-2.57 1.871L12.1 9.135c-.718 2.223-2.112 3.729-5.529 3.729H0l13.6 12.275a3.337 3.337 0 0 0 5.411-1.451l3.1-9.6L34.35 25.139a3.337 3.337 0 0 0 5.411-1.451l3.5-10.823 3.468-10.746A1.62 1.62 0 0 0 45.186 0" fill="#0B5D5F"/><path d="M81.932 9.337c-4.512 0-6.939 2.941-6.939 7.34s2.428 7.34 6.939 7.34 6.94-2.941 6.94-7.34-2.428-7.34-6.94-7.34m0 12.673c-2.77 0-4.083-2.079-4.083-5.335s1.313-5.334 4.083-5.334 4.085 2.079 4.085 5.334-1.316 5.334-4.085 5.334m37.181-12.673c-4.512 0-6.939 2.941-6.939 7.34s2.427 7.34 6.939 7.34 6.939-2.941 6.939-7.34-2.428-7.34-6.939-7.34m0 12.673c-2.77 0-4.084-2.079-4.084-5.335s1.314-5.334 4.084-5.334 4.086 2.082 4.086 5.334-1.314 5.333-4.083 5.333m54.257-12.7c-4.712 0-7.225 3.341-7.225 7.367 0 4 2.542 7.34 7.454 7.34 4.2 0 6.025-2.4 6.654-4.626h-3.569a2.94 2.94 0 0 1-3.2 2.142c-2.42 0-3.73-1.833-3.766-3.993h10.7v-.749c0-4.312-2.371-7.481-7.054-7.481m-3.627 5.734a3.475 3.475 0 0 1 3.627-3.25 3.31 3.31 0 0 1 3.484 3.25Zm-99.648-2.177h-9.18V4.993h-2.856v18.822h2.856v-8.666h9.18v8.666h2.856V4.993h-2.856Zm151.307-3.555a4.98 4.98 0 0 0-4.226 1.885v-6.2h-3.713v18.821h3.712v-8.281c0-2.256 1.085-3.655 3.141-3.655 1.971 0 3 1.2 3 3.369v8.567h3.712v-8.709c0-3.655-2.142-5.8-5.625-5.8M209.083 4.99h-3.713v4.545h-3.008v3h3.008v11.28h3.713V12.541h3.008v-3h-3.008Zm-11.816 18.825h3.712V4.993h-3.712Zm-2.542-2.54v-7.168c0-3.17-2.2-4.8-6.168-4.8-4.426 0-6.368 2.2-6.682 4.655h3.57c.143-1.228 1.171-2.171 2.941-2.171 1.628 0 2.771.628 2.771 2.2 0 .713-.428.942-1.314 1.085l-3.57.514c-3.084.428-4.969 1.57-4.969 4.169s2.312 4.256 5.539 4.256a5.05 5.05 0 0 0 4.369-1.828v.144a8.2 8.2 0 0 0 .171 1.483h3.6v-.225a8.6 8.6 0 0 1-.257-2.313Zm-3.57-2.742a2.94 2.94 0 0 1-3.228 3.113c-1.6 0-2.911-.686-2.911-2.058 0-1.171.971-1.542 2.371-1.8l2.37-.484a2.28 2.28 0 0 0 1.4-.6Zm-27.843-13.54-3.253 14.951-3.427-14.951h-4.733l-3.427 14.951-3.254-14.951h-4l5.063 18.822h4.587l3.4-14.551 3.4 14.551h4.587l5.063-18.822Zm-28.059 4.344a4.83 4.83 0 0 0-4.454 2.284V9.538h-2.857v14.277h2.857v-8.223c0-2.6 1.228-4.284 3.655-4.284 2.284 0 3.455 1.428 3.455 3.941v8.566h2.856v-8.681c0-3.685-2.028-5.8-5.51-5.8M108.968 4.99h-2.857v4.545h-3.092V11.7h3.092v12.112h2.856V11.703h3.091V9.538h-3.088Zm-9.5 4.546-3.833 5.338-3.826-5.34h-3l5.111 6.854-5.111 7.423h3l3.826-5.8 3.826 5.8h2.97l-5.083-7.423 5.083-6.854Z" fill="#0B5D5F"/></svg>
       </div>
-      <h2 style={{ fontSize: mobile ? 20 : 24, fontWeight: 700, margin: "0 0 4px", color: "#0f2b2d" }}>{title}</h2>
+      <h2 style={{ fontFamily: "'FT Calhern', sans-serif", fontSize: mobile ? 20 : 24, fontWeight: 600, margin: "0 0 4px", color: "#0f2b2d" }}>{title}</h2>
       <p style={{ fontSize: 14, color: "#5e7a80", margin: 0 }}>{subtitle}</p>
     </div>
   );
@@ -349,7 +348,7 @@ export default function ConsultationBooking() {
       <div style={S.wrapper}>
         <div style={{ ...S.card, textAlign: "center", padding: mobile ? "40px 20px" : "60px 32px" }}>
           <div style={S.successIcon} aria-hidden="true">✓</div>
-          <h2 style={{ fontSize: mobile ? 20 : 24, fontWeight: 700, color: "#0f2b2d", margin: "0 0 12px" }}>Consultation Booked</h2>
+          <h2 style={{ fontFamily: "'FT Calhern', sans-serif", fontSize: mobile ? 20 : 24, fontWeight: 600, color: "#0f2b2d", margin: "0 0 12px" }}>Consultation Booked</h2>
           <p style={{ fontSize: mobile ? 14 : 15, color: "#3d5a5e", margin: "0 0 8px", lineHeight: 1.6 }}>
             Thank you, {form.firstName}. Your {form.service.toLowerCase()} consultation is booked for{" "}
             <strong>{fmtSelectedLocal()}</strong> at <strong>{selSlot.localTime}</strong> ({friendlyTZ(userTZ)} time).
@@ -420,7 +419,7 @@ export default function ConsultationBooking() {
                       style={{
                         ...S.calCellBtn,
                         fontWeight: 500,
-                        transition: "all 0.15s",
+                        transition: "background 0.15s, color 0.15s, border-color 0.15s",
                         ...(off ? { color: "#c5d0d3", cursor: "default" } : { cursor: "pointer", color: "#0f2b2d" }),
                         ...(sel ? { background: "#0B5D5F", color: "#fff", fontWeight: 700 } : {}),
                         ...(td && !sel ? { border: "2px solid #0B5D5F" } : {}),
@@ -465,7 +464,7 @@ export default function ConsultationBooking() {
                             style={{
                               padding: "8px 4px", border: "1.5px solid #d1dde0", borderRadius: 8,
                               background: selected ? "#0B5D5F" : "#fff", fontSize: 13, fontWeight: 500,
-                              color: selected ? "#fff" : "#0B5D5F", cursor: "pointer", transition: "all 0.15s",
+                              color: selected ? "#fff" : "#0B5D5F", cursor: "pointer", transition: "background 0.15s, color 0.15s, border-color 0.15s",
                               textAlign: "center", borderColor: selected ? "#0B5D5F" : "#d1dde0", lineHeight: 1.4,
                             }}
                           >
@@ -521,6 +520,7 @@ export default function ConsultationBooking() {
             <label htmlFor="field-firstName" style={S.label}>First Name *</label>
             <input
               id="field-firstName"
+              autoComplete="given-name"
               aria-invalid={!!errors.firstName}
               aria-describedby={errors.firstName ? "err-firstName" : undefined}
               style={{ ...S.input, ...(errors.firstName ? S.inputErr : {}) }}
@@ -534,6 +534,7 @@ export default function ConsultationBooking() {
             <label htmlFor="field-lastName" style={S.label}>Last Name *</label>
             <input
               id="field-lastName"
+              autoComplete="family-name"
               aria-invalid={!!errors.lastName}
               aria-describedby={errors.lastName ? "err-lastName" : undefined}
               style={{ ...S.input, ...(errors.lastName ? S.inputErr : {}) }}
@@ -547,6 +548,7 @@ export default function ConsultationBooking() {
             <label htmlFor="field-country" style={S.label}>Country of Residence *</label>
             <select
               id="field-country"
+              autoComplete="country-name"
               aria-invalid={!!errors.country}
               aria-describedby={errors.country ? "err-country" : undefined}
               style={{ ...S.select, ...(errors.country ? S.inputErr : {}), color: form.country ? "#1a2e35" : "#94a3b8" }}
@@ -572,6 +574,9 @@ export default function ConsultationBooking() {
               </select>
               <input
                 id="field-phone"
+                type="tel"
+                inputMode="numeric"
+                autoComplete="tel"
                 aria-invalid={!!errors.phone}
                 aria-describedby={errors.phone ? "err-phone" : undefined}
                 style={{ ...S.input, flex: 1, ...(errors.phone ? S.inputErr : {}) }}
@@ -614,7 +619,7 @@ export default function ConsultationBooking() {
             {errors.fundSize && <span id="err-fundSize" style={S.err} role="alert">{errors.fundSize}</span>}
           </div>
           <div style={S.fieldFull}>
-            <label htmlFor="field-extra" style={S.label}>Additional Questions <span style={{ fontWeight: 400, textTransform: "none", color: "#94a3b8", letterSpacing: 0 }}>(optional)</span></label>
+            <label htmlFor="field-extra" style={S.label}>Additional Information <span style={{ fontWeight: 400, textTransform: "none", color: "#94a3b8", letterSpacing: 0 }}>(optional)</span></label>
             <textarea
               id="field-extra"
               style={S.textarea}
@@ -627,15 +632,14 @@ export default function ConsultationBooking() {
           </div>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 28, paddingTop: 20, borderTop: "1px solid #e4eaec", flexWrap: "wrap", gap: 12, flexDirection: mobile ? "column-reverse" : "row" }}>
-          <button onClick={() => { setStep(1); setErrors({}); }} style={{ ...S.btnSecondary, width: mobile ? "100%" : "auto" }}>← Change Time</button>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", marginTop: 28, paddingTop: 20, borderTop: "1px solid #e4eaec", flexWrap: "wrap", gap: 12, flexDirection: mobile ? "column-reverse" : "row" }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: mobile ? "stretch" : "flex-end", gap: 4, width: mobile ? "100%" : "auto" }}>
             <button onClick={handleSubmit} disabled={submitting}
               style={{ ...S.btnPrimary, ...(submitting ? { opacity: 0.6, cursor: "not-allowed" } : {}), width: mobile ? "100%" : "auto" }}>
               {submitting ? "Submitting..." : "Confirm Booking →"}
             </button>
             <p style={{ fontSize: 10, color: "#7a9499", textTransform: "uppercase", letterSpacing: "0.04em", margin: 0, textAlign: mobile ? "center" : "right" }}>
-              By submitting you agree to our <a href="#" style={{ color: "#0B5D5F", textDecoration: "underline" }}>Privacy Policy</a>
+              By submitting you agree to our <a href="https://hoxtonwealth.com/privacy-policy" target="_blank" rel="noopener noreferrer" style={{ color: "#0B5D5F", textDecoration: "underline" }}>Privacy Policy</a>
             </p>
           </div>
         </div>
@@ -648,7 +652,7 @@ export default function ConsultationBooking() {
 const focusRing = "0 0 0 2px #0B5D5F";
 
 const S = {
-  wrapper: { fontFamily: "-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif", maxWidth: 780, margin: "0 auto", padding: "20px 12px", color: "#1a2e35" },
+  wrapper: { fontFamily: "'Sentient', Georgia, serif", maxWidth: 780, margin: "0 auto", padding: "20px 12px", color: "#1a2e35" },
   card: { background: "#fff", borderRadius: 14, border: "1px solid #e4eaec", boxShadow: "0 2px 12px rgba(0,0,0,0.04)" },
   fieldHalf: { flex: "1 1 calc(50% - 8px)", minWidth: 200, display: "flex", flexDirection: "column" },
   fieldFull: { flex: "1 1 100%", display: "flex", flexDirection: "column" },
@@ -658,9 +662,9 @@ const S = {
   select: { padding: "11px 12px", border: "1.5px solid #d1dde0", borderRadius: 8, fontSize: 14, background: "#fff", cursor: "pointer", boxSizing: "border-box", width: "100%" },
   textarea: { padding: "11px 12px", border: "1.5px solid #d1dde0", borderRadius: 8, fontSize: 14, color: "#1a2e35", resize: "vertical", fontFamily: "inherit", background: "#fff", boxSizing: "border-box", width: "100%" },
   err: { fontSize: 11, color: "#e05252", marginTop: 4 },
-  btnPrimary: { padding: "12px 28px", background: "#0B5D5F", color: "#fff", border: "none", borderRadius: 8, fontSize: 14, fontWeight: 600, cursor: "pointer", letterSpacing: "0.01em", transition: "background 0.2s" },
-  btnSecondary: { padding: "12px 20px", background: "none", color: "#0B5D5F", border: "1.5px solid #d1dde0", borderRadius: 8, fontSize: 14, fontWeight: 600, cursor: "pointer" },
-  stepDot: { width: 28, height: 28, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, border: "2px solid #d1dde0", color: "#94a3b8", background: "#fff", transition: "all 0.2s" },
+  btnPrimary: { padding: "12px 28px", background: "#0B5D5F", color: "#fff", border: "none", borderRadius: 8, fontSize: 14, fontFamily: "'FT Calhern', sans-serif", fontWeight: 600, cursor: "pointer", letterSpacing: "0.01em", transition: "background 0.2s" },
+  btnSecondary: { padding: "12px 20px", background: "none", color: "#0B5D5F", border: "1.5px solid #d1dde0", borderRadius: 8, fontSize: 14, fontFamily: "'FT Calhern', sans-serif", fontWeight: 600, cursor: "pointer" },
+  stepDot: { width: 28, height: 28, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, border: "2px solid #d1dde0", color: "#94a3b8", background: "#fff", transition: "background 0.2s, color 0.2s, border-color 0.2s" },
   stepDotActive: { borderColor: "#0B5D5F", background: "#0B5D5F", color: "#fff" },
   chip: { padding: "6px 14px", background: "#f0f5f5", borderRadius: 20, fontSize: 13, fontWeight: 500, color: "#0B5D5F", border: "1px solid #d6e5e5" },
   calCell: { aspectRatio: "1", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, borderRadius: "50%" },
