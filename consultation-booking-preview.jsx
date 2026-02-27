@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 
 const SERVICES = ["Retirement Planning","Investment Advice","Wills & Estate Planning","Tax Advice","UK Pension Transfer","Regular Saving","Property Investments","Insurance","US Retirement Plans"];
 const FUND_SIZES = ["Less than £100,000","£100,000 to £250,000","£250,000 to £500,000","More than £500,000"];
@@ -200,9 +200,20 @@ export default function ConsultationBooking() {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
   const [debug, setDebug] = useState(null);
+  const [submitError, setSubmitError] = useState(null);
+
+  // Capture UTM params on mount
+  const utmRef = useRef({});
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+    const utm = {};
+    keys.forEach((k) => { const v = params.get(k); if (v) utm[k] = v; });
+    utmRef.current = utm;
+  }, []);
 
   const [form, setForm] = useState({
-    firstName: "", lastName: "", country: "", phoneCC: "AE",
+    firstName: "", lastName: "", email: "", country: "", phoneCC: "AE",
     phone: "", service: "", fundSize: "", extra: ""
   });
 
@@ -261,6 +272,11 @@ export default function ConsultationBooking() {
     const e = {};
     if (!form.firstName.trim()) e.firstName = "Required";
     if (!form.lastName.trim()) e.lastName = "Required";
+    if (!form.email.trim()) {
+      e.email = "Required";
+    } else if (!form.email.includes("@")) {
+      e.email = "Must contain @";
+    }
     if (!form.country) e.country = "Required";
     const phone = form.phone.trim();
     if (!phone) {
@@ -281,11 +297,13 @@ export default function ConsultationBooking() {
   };
 
   // ─── FIX #2: Gate debug payload behind NODE_ENV ───
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!validateStep2()) return;
     setSubmitting(true);
+    setSubmitError(null);
     const payload = {
       first_name: form.firstName.trim(), last_name: form.lastName.trim(),
+      email: form.email.trim(),
       country: form.country, country_code: resCountry?.code || "",
       phone_country_code: form.phoneCC, dial_code: dial,
       phone: `${dial}${form.phone.trim()}`, phone_raw: form.phone.trim(),
@@ -302,19 +320,38 @@ export default function ConsultationBooking() {
       local_timezone: userTZ,
       // UTC ISO
       utc_datetime: selSlot.utc.toISOString(),
+      // UTM params
+      utm: utmRef.current,
     };
     if (IS_DEV) {
       console.log("Payload:", JSON.stringify(payload, null, 2));
       setDebug(payload);
     }
-    setTimeout(() => { setSubmitted(true); setSubmitting(false); }, 800);
+    try {
+      const res = await fetch("/api/book", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `Request failed (${res.status})`);
+      }
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Booking submission error:", err);
+      setSubmitError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const reset = () => {
     setSubmitted(false);
+    setSubmitError(null);
     setDebug(null);
     setStep(1);
-    setForm({ firstName: "", lastName: "", country: "", phoneCC: "AE", phone: "", service: "", fundSize: "", extra: "" });
+    setForm({ firstName: "", lastName: "", email: "", country: "", phoneCC: "AE", phone: "", service: "", fundSize: "", extra: "" });
     setSelDate(null);
     setSelSlot(null);
     setErrors({});
@@ -545,6 +582,21 @@ export default function ConsultationBooking() {
             {errors.lastName && <span id="err-lastName" style={S.err} role="alert">{errors.lastName}</span>}
           </div>
           <div style={S.fieldFull}>
+            <label htmlFor="field-email" style={S.label}>Email Address *</label>
+            <input
+              id="field-email"
+              type="email"
+              autoComplete="email"
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "err-email" : undefined}
+              style={{ ...S.input, ...(errors.email ? S.inputErr : {}) }}
+              placeholder="you@example.com"
+              value={form.email}
+              onChange={(e) => upd("email", e.target.value)}
+            />
+            {errors.email && <span id="err-email" style={S.err} role="alert">{errors.email}</span>}
+          </div>
+          <div style={S.fieldFull}>
             <label htmlFor="field-country" style={S.label}>Country of Residence *</label>
             <select
               id="field-country"
@@ -631,6 +683,12 @@ export default function ConsultationBooking() {
             />
           </div>
         </div>
+
+        {submitError && (
+          <div role="alert" style={{ marginTop: 16, padding: "12px 16px", background: "#fef2f2", border: "1px solid #fecaca", borderRadius: 8, fontSize: 13, color: "#dc2626" }}>
+            {submitError}
+          </div>
+        )}
 
         <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", marginTop: 28, paddingTop: 20, borderTop: "1px solid #e4eaec", flexWrap: "wrap", gap: 12, flexDirection: mobile ? "column-reverse" : "row" }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: mobile ? "stretch" : "flex-end", gap: 4, width: mobile ? "100%" : "auto" }}>
