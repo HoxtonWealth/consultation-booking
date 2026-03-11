@@ -37,7 +37,7 @@ export default async function handler(req, res) {
               c: String(body.dial_code || "").replace(/\D/g, ""),
               n: String(body.phone_raw || ""),
             },
-            "str:cm:country-of-residence": String(body.country || ""),
+            "str:cm:country-of-residence": String(body.country_code || ""),
             "str:cm:email": String(body.email || ""),
             "str:cm:first-name": String(body.first_name || ""),
             "str:cm:last-name": String(body.last_name || ""),

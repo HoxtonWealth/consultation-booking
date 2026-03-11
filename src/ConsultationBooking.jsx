@@ -198,7 +198,6 @@ export default function ConsultationBooking() {
 
           <div style={styles.timezoneBanner}>
             🌐 Showing times in <strong>{friendlyTimezone(userTimezone)}</strong> time ({getTimezoneLabel(userTimezone)})
-            {!isUAE && <span style={{ color: "#7a9499" }}> · Our office is in Dubai ({getTimezoneLabel(UAE_TZ)})</span>}
           </div>
 
           <div style={{ display: "flex", gap: 28, flexDirection: isMobile ? "column" : "row" }}>
